@@ -12,25 +12,37 @@ A program that simulates a blackjack game between a guy called Sam and a dealer.
 
 ## Running
 
-Run the app with a file path as a command line argument to play with a fixed pre shuffled card deck. Each card must be defined as
+*Make the jar.file by running the following command standing in the root directory:*
+
+    mvn clean package
+
+### - Run with a shuffled card deck with 52 cards
+
+Run the created jar.file by running the following command:
+
+    java -jar blackjack-1.0.0-SNAPSHOT.jar
+
+### - Run the app with a file path as a command line argument to play with a fixed pre shuffled card deck.
+
+If the file containing the deck you want to use is located on your desktop, the command will look something similar to
+this:
+
+    java -jar blackjack-1.0.0-SNAPSHOT.jar "/home/develop/Desktop/testfile.txt"
+
+Each card in the "testfile.txt" must be formatted in the following way:
 
     <suit><value>
 
 Each card is seperated by comma(,), and the following file content
 
-    CA, D4, H7, SJ, S5, CK, S9, D10
+    SA, D4, CK, H10
 
 yields a card deck consisting of
 
-<img src="https://www.improvemagic.com/wp-content/uploads/2020/11/ka.png" alt="Ace of clubs" width="60">
-<img src="https://www.improvemagic.com/wp-content/uploads/2020/11/l4.png" alt="Four of diamonds" width="60">
-<img src="https://www.improvemagic.com/wp-content/uploads/2020/11/s7.png" alt="Seven of hearts" width="60">
-<img src="https://www.improvemagic.com/wp-content/uploads/2020/11/p5.png" alt="Five of spades" width="60">
-<img src="https://www.improvemagic.com/wp-content/uploads/2020/11/kk.png" alt="King of clubs" width="60">
-<img src="https://www.improvemagic.com/wp-content/uploads/2020/11/p9.png" alt="Nine of spades" width="60">
-<img src="https://www.improvemagic.com/wp-content/uploads/2020/11/l10.png" alt="Ten of diamonds" width="60">
-
-When not providing a predefined card deck, a new card deck with 52 cards will be shuffled and used.
+[![Ace of spades](https://www.improvemagic.com/wp-content/uploads/2020/11/pa.png)](https://www.improvemagic.com/wp-content/uploads/2020/11/pa.png)
+[![Four of diamonds](https://www.improvemagic.com/wp-content/uploads/2020/11/l4.png)](https://www.improvemagic.com/wp-content/uploads/2020/11/l4.png)
+[![King of clubs](https://www.improvemagic.com/wp-content/uploads/2020/11/kk.png)](https://www.improvemagic.com/wp-content/uploads/2020/11/kk.png)
+[![Ten of hearts](https://www.improvemagic.com/wp-content/uploads/2020/11/s10.png)](https://www.improvemagic.com/wp-content/uploads/2020/11/s10.png)
 
 ## Authors
 
