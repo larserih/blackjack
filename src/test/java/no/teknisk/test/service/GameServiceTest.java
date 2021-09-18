@@ -56,14 +56,14 @@ class GameServiceTest {
         Deck aces = createDeck(createCards(11, 11, 11, 11));
         Deck blackjack = createDeck(createCards(11, 11, 10, 10));
         Deck samBusts = createDeck(createCards(6, 3, 10, 10, 8));
-        Deck dealerBusts = createDeck(createCards(8, 7, 10, 10, 6));
+        Deck dealerBusts = createDeck(createCards(8, 8, 10, 10, 6));
         Deck dealerHighestScore = createDeck(createCards(9, 2, 8, 5, 6, 6));
 
         return Stream.of(
                 Arguments.of("Both gets 22 initally", aces, Player.DEALER, 22, 22),
                 Arguments.of("Both gets 21 initally", blackjack, Player.SAM, 21, 21),
                 Arguments.of("Sam busts", samBusts, Player.DEALER, 24, 13),
-                Arguments.of("Dealer busts", dealerBusts, Player.SAM, 18, 23),
+                Arguments.of("Dealer busts", dealerBusts, Player.SAM, 18, 24),
                 Arguments.of("Dealer with highest score", dealerHighestScore, Player.DEALER, 17, 19)
         );
     }

@@ -5,6 +5,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -17,12 +19,14 @@ class InputServiceTest {
 
     private static final String FOLDER = "src/test/resources/";
 
-    @ParameterizedTest(name = "{index}. {0} -> file path=''{1}'', expected number of cards=''{2}''")
+    @ParameterizedTest(name = "{index}. {0} -> file path=''{1}'', expected cards=''{2}''")
     @DisplayName("Get list of strings from file in given file path")
     @MethodSource("createInputAndExpectedOutput")
-    void getStringsFromFile(String name, String filePath, int expectedNumberOfCards) {
+    void getStringsFromFile(String name, String filePath, List<String> expectedCards) {
         List<String> cardsFromFile = inputService.getCardsFromFile(filePath);
-        assertThat(cardsFromFile).isNotEmpty().hasSize(expectedNumberOfCards);
+
+        assertThat(cardsFromFile).isNotEmpty().hasSize(expectedCards.size());
+        assertThat(cardsFromFile).usingDefaultElementComparator().isEqualTo(expectedCards);
     }
 
     @ParameterizedTest(name = "{index}. {0} -> file path=''{1}'', expected error message=''{2}''")
@@ -39,8 +43,8 @@ class InputServiceTest {
         String oneCard = FOLDER + "oneCard.txt";
 
         return Stream.of(
-                Arguments.of("Ten card deck is provided", tenCards, 10),
-                Arguments.of("One card deck is provided", oneCard, 1)
+                Arguments.of("Ten card deck is provided", tenCards, Arrays.asList("DJ", "CA", "D4", "HK", "H7", "SJ", "S5", "S9", "D10", "CQ")),
+                Arguments.of("One card deck is provided", oneCard, Collections.singletonList("DK"))
         );
     }
 

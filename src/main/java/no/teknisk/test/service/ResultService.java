@@ -15,10 +15,10 @@ public class ResultService {
                 .map(Hand::getPlayer)
                 .map(Player::getName)
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("There must be a winner name to announce"));
+                .orElseThrow(() -> new IllegalStateException("There must be a winner to announce"));
 
-        Hand samsHand = getPlayersHand(hands, Player.SAM);
-        Hand dealersHand = getPlayersHand(hands, Player.DEALER);
+        Hand samsHand = getPlayerHand(hands, Player.SAM);
+        Hand dealersHand = getPlayerHand(hands, Player.DEALER);
 
         String samsHandAsString = createHandAsString(samsHand);
         String dealersHandAsString = createHandAsString(dealersHand);
@@ -28,7 +28,7 @@ public class ResultService {
         System.out.println(Player.DEALER.getName().concat(": ").concat(dealersHandAsString));
     }
 
-    private Hand getPlayersHand(List<Hand> hands, Player player) {
+    private Hand getPlayerHand(List<Hand> hands, Player player) {
         return hands.stream()
                 .filter(hand -> player.equals(hand.getPlayer()))
                 .findFirst()

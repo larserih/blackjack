@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,7 +26,7 @@ class ResultServiceTest {
         List<Hand> noHands = Collections.emptyList();
         assertThatThrownBy(() -> resultService.announceWinner(noHands))
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("There must be a winner name to announce");
+                .hasMessage("There must be a winner to announce");
     }
 
     @Test
@@ -41,10 +40,9 @@ class ResultServiceTest {
 
     @Test
     @DisplayName("The winner is announced")
-    void announceWinner() throws IOException {
+    void announceWinner() {
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bo));
-        bo.flush();
 
         List<Card> samsCards = Arrays.asList(
                 createCard(Suit.D, "Q"),
@@ -62,12 +60,12 @@ class ResultServiceTest {
 
         String expectedAnnouncement = "sam\n" +
                 "sam: DQ,SA\n" +
-                "dealer: C4,HA,CA";
+                "dealer: C4,HA,CA\n";
 
         resultService.announceWinner(hands);
 
         String linesPrintedToSout = bo.toString();
-        assertThat(linesPrintedToSout).contains(expectedAnnouncement);
+        assertThat(linesPrintedToSout).isEqualTo(expectedAnnouncement);
     }
 
     private Card createCard(Suit suit, String symbol) {

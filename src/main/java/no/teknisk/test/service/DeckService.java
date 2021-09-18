@@ -17,8 +17,8 @@ public class DeckService {
     public Deck prepareProvidedDeck(List<String> cardStrings) {
         List<Card> cards = new ArrayList<>();
 
-        cardStrings
-                .forEach(cardString -> cards.add(createCardFromString(cardString)));
+        cardStrings.forEach(cardString ->
+                cards.add(createCardFromString(cardString)));
 
         return createDeck(cards);
     }

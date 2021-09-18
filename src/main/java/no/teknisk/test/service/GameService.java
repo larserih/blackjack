@@ -32,7 +32,7 @@ public class GameService {
             return dealerWins(sam, dealer);
         }
 
-        while (dealer.getCardsValue() < sam.getCardsValue()) {
+        while (dealer.getCardsValue() <= sam.getCardsValue()) {
             dealer.addCard(pullCard(deck));
         }
 
